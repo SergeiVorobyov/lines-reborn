@@ -10,36 +10,36 @@
 
 #define MENU_HEIGHT 45
 
-#define TOP_HEIGHT 46	// Высота табло (где отображаются очки) в пикселах
-#define CELL_SIZE 45	//Размер стороны ячейки в пикселах (они все квадратные)
+#define TOP_HEIGHT 46	// Р’С‹СЃРѕС‚Р° С‚Р°Р±Р»Рѕ (РіРґРµ РѕС‚РѕР±СЂР°Р¶Р°СЋС‚СЃСЏ РѕС‡РєРё) РІ РїРёРєСЃРµР»Р°С…
+#define CELL_SIZE 45	//Р Р°Р·РјРµСЂ СЃС‚РѕСЂРѕРЅС‹ СЏС‡РµР№РєРё РІ РїРёРєСЃРµР»Р°С… (РѕРЅРё РІСЃРµ РєРІР°РґСЂР°С‚РЅС‹Рµ)
 
-#define N1 4	//Количество картинок для появления шарика
-#define N2 12	//Количество картинок для прыжка шарика
-#define N3 9	//Количество картинок для удаления шарика
+#define N1 4	//РљРѕР»РёС‡РµСЃС‚РІРѕ РєР°СЂС‚РёРЅРѕРє РґР»СЏ РїРѕСЏРІР»РµРЅРёСЏ С€Р°СЂРёРєР°
+#define N2 12	//РљРѕР»РёС‡РµСЃС‚РІРѕ РєР°СЂС‚РёРЅРѕРє РґР»СЏ РїСЂС‹Р¶РєР° С€Р°СЂРёРєР°
+#define N3 9	//РљРѕР»РёС‡РµСЃС‚РІРѕ РєР°СЂС‚РёРЅРѕРє РґР»СЏ СѓРґР°Р»РµРЅРёСЏ С€Р°СЂРёРєР°
 
-#define MAX_MAP_X 20	//Максимальный размер поля по x
-#define MAX_MAP_Y 12    //Максимальный размер поля по y
+#define MAX_MAP_X 20	//РњР°РєСЃРёРјР°Р»СЊРЅС‹Р№ СЂР°Р·РјРµСЂ РїРѕР»СЏ РїРѕ x
+#define MAX_MAP_Y 12    //РњР°РєСЃРёРјР°Р»СЊРЅС‹Р№ СЂР°Р·РјРµСЂ РїРѕР»СЏ РїРѕ y
 
 //All my changes in this file mrked with "medo" comment
-//Все мои изменения ищите по комментарию "medo"
+//Р’СЃРµ РјРѕРё РёР·РјРµРЅРµРЅРёСЏ РёС‰РёС‚Рµ РїРѕ РєРѕРјРјРµРЅС‚Р°СЂРёСЋ "medo"
 
 struct
 {
-	//Состояние автомата для этой ячейки
+	//РЎРѕСЃС‚РѕСЏРЅРёРµ Р°РІС‚РѕРјР°С‚Р° РґР»СЏ СЌС‚РѕР№ СЏС‡РµР№РєРё
 	int y;
-	//Цвет шарика в этой ячейке
+	//Р¦РІРµС‚ С€Р°СЂРёРєР° РІ СЌС‚РѕР№ СЏС‡РµР№РєРµ
 	int color;
-	//Цвет шарика-подсказки в этой ячейке
-	//(когда игровой шарик проходит через эту ячейку, тогда color != pre_color)
+	//Р¦РІРµС‚ С€Р°СЂРёРєР°-РїРѕРґСЃРєР°Р·РєРё РІ СЌС‚РѕР№ СЏС‡РµР№РєРµ
+	//(РєРѕРіРґР° РёРіСЂРѕРІРѕР№ С€Р°СЂРёРє РїСЂРѕС…РѕРґРёС‚ С‡РµСЂРµР· СЌС‚Сѓ СЏС‡РµР№РєСѓ, С‚РѕРіРґР° color != pre_color)
 	int pre_color;
-	//Номер картинки, выводимой в текущий момент, при появлении, удалении, прыжке шарика
+	//РќРѕРјРµСЂ РєР°СЂС‚РёРЅРєРё, РІС‹РІРѕРґРёРјРѕР№ РІ С‚РµРєСѓС‰РёР№ РјРѕРјРµРЅС‚, РїСЂРё РїРѕСЏРІР»РµРЅРёРё, СѓРґР°Р»РµРЅРёРё, РїСЂС‹Р¶РєРµ С€Р°СЂРёРєР°
 	int num_pic;
-} 
+}
 
-// Игровое поле
-map[MAX_MAP_X][MAX_MAP_Y];	
+// РРіСЂРѕРІРѕРµ РїРѕР»Рµ
+map[MAX_MAP_X][MAX_MAP_Y];
 
-// Цвет игрового шарика
+// Р¦РІРµС‚ РёРіСЂРѕРІРѕРіРѕ С€Р°СЂРёРєР°
 int ball_color;
 
 
@@ -49,61 +49,61 @@ struct info
 	int time;
 	char name[30];
 }
-// Лучшие результаты
+// Р›СѓС‡С€РёРµ СЂРµР·СѓР»СЊС‚Р°С‚С‹
 leaders[3];
 
-// Минимальный результат, чтобы попасть в таблицу
-const info null_leader={100,3600,"noname"};
+// РњРёРЅРёРјР°Р»СЊРЅС‹Р№ СЂРµР·СѓР»СЊС‚Р°С‚, С‡С‚РѕР±С‹ РїРѕРїР°СЃС‚СЊ РІ С‚Р°Р±Р»РёС†Сѓ
+const info null_leader = { 100,3600,"noname" };
 
-// Состояние автомата управления игрой
+// РЎРѕСЃС‚РѕСЏРЅРёРµ Р°РІС‚РѕРјР°С‚Р° СѓРїСЂР°РІР»РµРЅРёСЏ РёРіСЂРѕР№
 int y_lines;
 
-// Время игры
+// Р’СЂРµРјСЏ РёРіСЂС‹
 int gametime;
-// Очки
+// РћС‡РєРё
 int gamescore;
-// Тип игры: 0-easy, 1-normal, 2-hard, 3-custom
+// РўРёРї РёРіСЂС‹: 0-easy, 1-normal, 2-hard, 3-custom
 int gametype;
 
-// Текущий размер поля
-int max_x; // по x
-int max_y; // по y
-//Количество появляющихся шаров
+// РўРµРєСѓС‰РёР№ СЂР°Р·РјРµСЂ РїРѕР»СЏ
+int max_x; // РїРѕ x
+int max_y; // РїРѕ y
+//РљРѕР»РёС‡РµСЃС‚РІРѕ РїРѕСЏРІР»СЏСЋС‰РёС…СЃСЏ С€Р°СЂРѕРІ
 int app_balls;
-//Количество удаляемых шаров
+//РљРѕР»РёС‡РµСЃС‚РІРѕ СѓРґР°Р»СЏРµРјС‹С… С€Р°СЂРѕРІ
 int del_balls;
 
 
-#define LOGGING //Включаем логирование
+#define LOGGING //Р’РєР»СЋС‡Р°РµРј Р»РѕРіРёСЂРѕРІР°РЅРёРµ
 
 #ifdef LOGGING
 //FILE *log;
-FILE *mylog; //medo
+FILE* mylog; //medo
 
-const char* aCell_states[6] = 
+const char* aCell_states[6] =
 {
-  "Отсутствие шара",
-  "Подсказка",
-  "Появление шара",
-  "Шар стоит",
-  "Шар прыгает",
-  "Удаление шара"
+  "РћС‚СЃСѓС‚СЃС‚РІРёРµ С€Р°СЂР°",
+  "РџРѕРґСЃРєР°Р·РєР°",
+  "РџРѕСЏРІР»РµРЅРёРµ С€Р°СЂР°",
+  "РЁР°СЂ СЃС‚РѕРёС‚",
+  "РЁР°СЂ РїСЂС‹РіР°РµС‚",
+  "РЈРґР°Р»РµРЅРёРµ С€Р°СЂР°"
 };
 
-const char* aLines_states[5] = 
+const char* aLines_states[5] =
 {
-  "Поиск игрового шара",
-  "Поиск куда послать игровой шар",
-  "Передвижение игрового шара",
-  "Удаление линий",
-  "Появление новых шаров"
+  "РџРѕРёСЃРє РёРіСЂРѕРІРѕРіРѕ С€Р°СЂР°",
+  "РџРѕРёСЃРє РєСѓРґР° РїРѕСЃР»Р°С‚СЊ РёРіСЂРѕРІРѕР№ С€Р°СЂ",
+  "РџРµСЂРµРґРІРёР¶РµРЅРёРµ РёРіСЂРѕРІРѕРіРѕ С€Р°СЂР°",
+  "РЈРґР°Р»РµРЅРёРµ Р»РёРЅРёР№",
+  "РџРѕСЏРІР»РµРЅРёРµ РЅРѕРІС‹С… С€Р°СЂРѕРІ"
 };
 
 #endif
 
 
-HANDLE bmp_0,bmp_prestand, bmp_stand, bmp_jump[N2], bmp_explode[N3], bmp_appear[N1], bmp_numbers, bmp_points;
-HANDLE *bmp[6];
+HANDLE bmp_0, bmp_prestand, bmp_stand, bmp_jump[N2], bmp_explode[N3], bmp_appear[N1], bmp_numbers, bmp_points;
+HANDLE* bmp[6];
 
 HDC hDC;
 HDC hCompatibleDC;
@@ -114,154 +114,188 @@ TCHAR szWindowClass[] = "LINES";
 
 RECT clRect;
 
-// Класс "Ячейка"
+// РљР»Р°СЃСЃ "РЇС‡РµР№РєР°"
 class cell
 {
 public:
-	int posx; // Позиция ячейки на поле (слева направо от 0)
-	int posy; // Позиция ячейки на поле (сверху вниз от 0)
-	bool operator ==(const cell & b) const
-	{return (b.posx == posx && b.posy == posy);}
-	bool operator !=(const cell & b) const
-	{return (!(*this == b));}
-	int & State() const
-	{return map[posx][posy].y;}
-	int & Color() const
-	{return map[posx][posy].color;}
-	int & PreColor() const
-	{return map[posx][posy].pre_color;}
-	int & NumPic() const
-	{return map[posx][posy].num_pic;}
+	int posx; // РџРѕР·РёС†РёСЏ СЏС‡РµР№РєРё РЅР° РїРѕР»Рµ (СЃР»РµРІР° РЅР°РїСЂР°РІРѕ РѕС‚ 0)
+	int posy; // РџРѕР·РёС†РёСЏ СЏС‡РµР№РєРё РЅР° РїРѕР»Рµ (СЃРІРµСЂС…Сѓ РІРЅРёР· РѕС‚ 0)
+	bool operator ==(const cell& b) const
+	{
+		return (b.posx == posx && b.posy == posy);
+	}
+	bool operator !=(const cell& b) const
+	{
+		return (!(*this == b));
+	}
+	int& State() const
+	{
+		return map[posx][posy].y;
+	}
+	int& Color() const
+	{
+		return map[posx][posy].color;
+	}
+	int& PreColor() const
+	{
+		return map[posx][posy].pre_color;
+	}
+	int& NumPic() const
+	{
+		return map[posx][posy].num_pic;
+	}
 
-	// автомат "ячейка"
+	// Р°РІС‚РѕРјР°С‚ "СЏС‡РµР№РєР°"
 	void ACell(int e) const
 	{
-		int &y=State();
+		int& y = State();
 
-		#ifdef LOGGING
+#ifdef LOGGING
 		int y_old = y;
-		#endif
+#endif
 
-		switch(y)
+		switch (y)
 		{
-		// Отсутствие шара
+			// РћС‚СЃСѓС‚СЃС‚РІРёРµ С€Р°СЂР°
 		case 0:
-			if (e==1)			{z0();		y=3;}
-			if (e==2 && x0())	{z4();		y=1;}
-			else if (e==2)		{z1();		y=1;}
+			if (e == 1) { z0();		y = 3; }
+			if (e == 2 && x0()) { z4();		y = 1; }
+			else if (e == 2) { z1();		y = 1; }
 			break;
-		// Подсказка
+			// РџРѕРґСЃРєР°Р·РєР°
 		case 1:
-			if (e==1)			{z2();		y=3;}
-			if (e==3)						y=2;
+			if (e == 1) { z2();		y = 3; }
+			if (e == 3)						y = 2;
 			break;
-		// Появление шара
+			// РџРѕСЏРІР»РµРЅРёРµ С€Р°СЂР°
 		case 2:
-			if (e==3 && x1())	{z6();		y=3;}
-			else if (e==3)		{z5();}
+			if (e == 3 && x1()) { z6();		y = 3; }
+			else if (e == 3) { z5(); }
 			break;
-		// Шар стоит
+			// РЁР°СЂ СЃС‚РѕРёС‚
 		case 3:
-			if (e==0 && x0() )	{z4();		y=1;}
-			else if (e==0)		{z3();		y=0;}
-			if (e==4) 						y=5;
-			if (e==5)						y=4;
+			if (e == 0 && x0()) { z4();		y = 1; }
+			else if (e == 0) { z3();		y = 0; }
+			if (e == 4) 						y = 5;
+			if (e == 5)						y = 4;
 			break;
-		// Шар прыгает
+			// РЁР°СЂ РїСЂС‹РіР°РµС‚
 		case 4:
-			if (e==0)			{z6();z3();		y=0;}
-			if (e==6)			{z6();			y=3;}
-			if (e==5 && x2())	{z6();}
-			else if (e==5)		{z5();}
+			if (e == 0) { z6(); z3();		y = 0; }
+			if (e == 6) { z6();			y = 3; }
+			if (e == 5 && x2()) { z6(); }
+			else if (e == 5) { z5(); }
 			break;
-		// Удаление шара
+			// РЈРґР°Р»РµРЅРёРµ С€Р°СЂР°
 		case 5:
-			if (e==4 && x3() && x0())	{z6();z4();		y=1;}
-			else if (e==4 && x3())		{z6();z3();		y=0;}
-			else if (e==4)				{z5();}
+			if (e == 4 && x3() && x0()) { z6(); z4();		y = 1; }
+			else if (e == 4 && x3()) { z6(); z3();		y = 0; }
+			else if (e == 4) { z5(); }
 			break;
 		}
 
-		#ifdef LOGGING
-		if (y!=y_old)
+#ifdef LOGGING
+		if (y != y_old)
 		{
 			char s[30];
 			time_t t;
 			time(&t);
-			strftime(s,30,"%X", gmtime(&t));
-			//fprintf(log,"[%s] => Ячейка (%d,%d) из состояния \"%s\" перешла в состояние \"%s\".\n",s,posx+1,posy+1,aCell_states[y_old],aCell_states[y]);
-			fprintf(mylog, "[%s] => Ячейка (%d,%d) из состояния \"%s\" перешла в состояние \"%s\".\n", s, posx + 1, posy + 1, aCell_states[y_old], aCell_states[y]); //medo
+			strftime(s, 30, "%X", gmtime(&t));
+			//fprintf(log,"[%s] => РЇС‡РµР№РєР° (%d,%d) РёР· СЃРѕСЃС‚РѕСЏРЅРёСЏ \"%s\" РїРµСЂРµС€Р»Р° РІ СЃРѕСЃС‚РѕСЏРЅРёРµ \"%s\".\n",s,posx+1,posy+1,aCell_states[y_old],aCell_states[y]);
+			fprintf(mylog, "[%s] => РЇС‡РµР№РєР° (%d,%d) РёР· СЃРѕСЃС‚РѕСЏРЅРёСЏ \"%s\" РїРµСЂРµС€Р»Р° РІ СЃРѕСЃС‚РѕСЏРЅРёРµ \"%s\".\n", s, posx + 1, posy + 1, aCell_states[y_old], aCell_states[y]); //medo
 		}
-		#endif
+#endif
 
-		
+
 		DrawState();
 	}
 
 	void DrawState() const
 	{
 		SelectObject(hCompatibleDC, bmp[State()][NumPic()]);
-		BitBlt(hDC,posx*CELL_SIZE, TOP_HEIGHT+posy*CELL_SIZE, CELL_SIZE+1, CELL_SIZE+1, hCompatibleDC, Color()*CELL_SIZE, 0, SRCCOPY);
+		BitBlt(hDC, posx * CELL_SIZE, TOP_HEIGHT + posy * CELL_SIZE, CELL_SIZE + 1, CELL_SIZE + 1, hCompatibleDC, Color() * CELL_SIZE, 0, SRCCOPY);
 	}
 
 private:
-	//ВХОДЯЩИЕ ПЕРЕМЕННЫЕ
-	
-	//Требуется восстановление подсказки
-	bool x0() const
-	{return PreColor()!=-1;}
-	//Последняя стадия появления шара
-	bool x1() const
-	{return (NumPic()==N1-1);}
-	//Последняя стадия прыжка для шара
-	bool x2() const
-	{return (NumPic()==N2-1);}
-	//Последняя стадия удаления шара
-	bool x3() const
-	{return (NumPic()==N3-1);}
-	
-	//ВЫХОДЯЩИЕ ВОЗДЕЙСТВИЯ
+	//Р’РҐРћР”РЇР©РР• РџР•Р Р•РњР•РќРќР«Р•
 
-	//Установить в ячейке двигающийся шар
+	//РўСЂРµР±СѓРµС‚СЃСЏ РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РїРѕРґСЃРєР°Р·РєРё
+	bool x0() const
+	{
+		return PreColor() != -1;
+	}
+	//РџРѕСЃР»РµРґРЅСЏСЏ СЃС‚Р°РґРёСЏ РїРѕСЏРІР»РµРЅРёСЏ С€Р°СЂР°
+	bool x1() const
+	{
+		return (NumPic() == N1 - 1);
+	}
+	//РџРѕСЃР»РµРґРЅСЏСЏ СЃС‚Р°РґРёСЏ РїСЂС‹Р¶РєР° РґР»СЏ С€Р°СЂР°
+	bool x2() const
+	{
+		return (NumPic() == N2 - 1);
+	}
+	//РџРѕСЃР»РµРґРЅСЏСЏ СЃС‚Р°РґРёСЏ СѓРґР°Р»РµРЅРёСЏ С€Р°СЂР°
+	bool x3() const
+	{
+		return (NumPic() == N3 - 1);
+	}
+
+	//Р’Р«РҐРћР”РЇР©РР• Р’РћР—Р”Р•Р™РЎРўР’РРЇ
+
+	//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РІ СЏС‡РµР№РєРµ РґРІРёРіР°СЋС‰РёР№СЃСЏ С€Р°СЂ
 	void z0() const
-	{Color()=ball_color;}
-	//Генерировать подсказку
+	{
+		Color() = ball_color;
+	}
+	//Р“РµРЅРµСЂРёСЂРѕРІР°С‚СЊ РїРѕРґСЃРєР°Р·РєСѓ
 	void z1() const
-	{Color()=random(7);}
-	//Очистить ячейку
+	{
+		Color() = random(7);
+	}
+	//РћС‡РёСЃС‚РёС‚СЊ СЏС‡РµР№РєСѓ
 	void z2() const
-	{PreColor()=Color();Color()=ball_color;}
-	//Установить в ячейке с подсказкой двигающийся шар
+	{
+		PreColor() = Color(); Color() = ball_color;
+	}
+	//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РІ СЏС‡РµР№РєРµ СЃ РїРѕРґСЃРєР°Р·РєРѕР№ РґРІРёРіР°СЋС‰РёР№СЃСЏ С€Р°СЂ
 	void z3() const
-	{Color()=0;}
-	//Восстановить подсказку
+	{
+		Color() = 0;
+	}
+	//Р’РѕСЃСЃС‚Р°РЅРѕРІРёС‚СЊ РїРѕРґСЃРєР°Р·РєСѓ
 	void z4() const
-	{Color()=PreColor();PreColor()=-1;}
-	//Вывести на экран следующую картинку для текущего состояния
+	{
+		Color() = PreColor(); PreColor() = -1;
+	}
+	//Р’С‹РІРµСЃС‚Рё РЅР° СЌРєСЂР°РЅ СЃР»РµРґСѓСЋС‰СѓСЋ РєР°СЂС‚РёРЅРєСѓ РґР»СЏ С‚РµРєСѓС‰РµРіРѕ СЃРѕСЃС‚РѕСЏРЅРёСЏ
 	void z5() const
-	{++NumPic();}
-	//Вывести на экран первую картинку для текущего состояния
+	{
+		++NumPic();
+	}
+	//Р’С‹РІРµСЃС‚Рё РЅР° СЌРєСЂР°РЅ РїРµСЂРІСѓСЋ РєР°СЂС‚РёРЅРєСѓ РґР»СЏ С‚РµРєСѓС‰РµРіРѕ СЃРѕСЃС‚РѕСЏРЅРёСЏ
 	void z6() const
-	{NumPic()=0;}
+	{
+		NumPic() = 0;
+	}
 
 };
 
-//Игровой шар
+//РРіСЂРѕРІРѕР№ С€Р°СЂ
 cell ball;
-//Выбранный шар (ткнули мышкой)
+//Р’С‹Р±СЂР°РЅРЅС‹Р№ С€Р°СЂ (С‚РєРЅСѓР»Рё РјС‹С€РєРѕР№)
 cell click_ball;
 
-//Список появляющихся шаров
+//РЎРїРёСЃРѕРє РїРѕСЏРІР»СЏСЋС‰РёС…СЃСЏ С€Р°СЂРѕРІ
 std::list<cell> appear_list;
-//Список удаляющихся шаров
+//РЎРїРёСЃРѕРє СѓРґР°Р»СЏСЋС‰РёС…СЃСЏ С€Р°СЂРѕРІ
 std::list<cell> explode_list;
-//Путь по которому проходит двигающийся шар
+//РџСѓС‚СЊ РїРѕ РєРѕС‚РѕСЂРѕРјСѓ РїСЂРѕС…РѕРґРёС‚ РґРІРёРіР°СЋС‰РёР№СЃСЏ С€Р°СЂ
 std::stack<cell> path;
 
 std::list<cell>::iterator itr;
 
 
-// Прототипы функций, встречаемых далее в программе
+// РџСЂРѕС‚РѕС‚РёРїС‹ С„СѓРЅРєС†РёР№, РІСЃС‚СЂРµС‡Р°РµРјС‹С… РґР°Р»РµРµ РІ РїСЂРѕРіСЂР°РјРјРµ
 void ALines(int);
 void z0();
 void z1_1();
@@ -286,12 +320,12 @@ bool x3();
 bool x4();
 bool x5();
 
-bool FindEmptyCell(cell &);
+bool FindEmptyCell(cell&);
 void GenerateAppearList();
 void CheckAppearList();
-bool FindPath(const cell &, const cell &);
-bool CheckLines(const cell &);
-bool Valid(const cell &);
+bool FindPath(const cell&, const cell&);
+bool CheckLines(const cell&);
+bool Valid(const cell&);
 
 void GameOver();
 void NewGame();
@@ -305,7 +339,7 @@ void WriteInfo();
 
 
 ATOM				MyRegisterClass(HINSTANCE);
-BOOL				InitInstance(HINSTANCE,int);
+BOOL				InitInstance(HINSTANCE, int);
 LRESULT CALLBACK	WndProc(HWND, UINT, WPARAM, LPARAM);
 LRESULT CALLBACK	About(HWND, UINT, WPARAM, LPARAM);
 LRESULT CALLBACK	Custom(HWND, UINT, WPARAM, LPARAM);
@@ -313,31 +347,31 @@ LRESULT CALLBACK	BestResults(HWND, UINT, WPARAM, LPARAM);
 LRESULT CALLBACK	GetName(HWND, UINT, WPARAM, LPARAM);
 
 
-//Главная функция окна
+//Р“Р»Р°РІРЅР°СЏ С„СѓРЅРєС†РёСЏ РѕРєРЅР°
 int APIENTRY WinMain(HINSTANCE hInstance,
-                     HINSTANCE hPrevInstance,
-                     LPSTR     lpCmdLine,
-                     int       nCmdShow)
+	HINSTANCE hPrevInstance,
+	LPSTR     lpCmdLine,
+	int       nCmdShow)
 {
 	MSG msg;
 	HACCEL hAccelTable;
 
 	randomize();
 
-	hInst=hInstance;
+	hInst = hInstance;
 	MyRegisterClass(hInstance);
 
-	if (!InitInstance (hInstance,nCmdShow))
+	if (!InitInstance(hInstance, nCmdShow))
 	{
 		return FALSE;
 	}
 
 	hAccelTable = LoadAccelerators(hInstance, (LPCTSTR)IDC_LINES);
 
-	//Главный цикл сообщений Windows
-	while (GetMessage(&msg, NULL, 0, 0)) 
+	//Р“Р»Р°РІРЅС‹Р№ С†РёРєР» СЃРѕРѕР±С‰РµРЅРёР№ Windows
+	while (GetMessage(&msg, NULL, 0, 0))
 	{
-		if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg)) 
+		if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
 		{
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
@@ -347,47 +381,47 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 	return msg.wParam;
 }
 
-//Регистрация класса окна
+//Р РµРіРёСЃС‚СЂР°С†РёСЏ РєР»Р°СЃСЃР° РѕРєРЅР°
 ATOM MyRegisterClass(HINSTANCE hInstance)
 {
 	WNDCLASSEX wcex;
 
-	wcex.cbSize = sizeof(WNDCLASSEX); 
+	wcex.cbSize = sizeof(WNDCLASSEX);
 
-	wcex.style			= CS_HREDRAW | CS_VREDRAW;
-	wcex.lpfnWndProc	= (WNDPROC)WndProc;
-	wcex.cbClsExtra		= 0;
-	wcex.cbWndExtra		= 0;
-	wcex.hInstance		= hInstance;
-	wcex.hIcon			= LoadIcon(hInst, (LPCTSTR)IDI_LINES);
-	wcex.hCursor		= LoadCursor(NULL, IDC_ARROW);
-	wcex.hbrBackground	= (HBRUSH)(COLOR_WINDOW+1);
-	wcex.lpszMenuName	= (LPCSTR)IDC_LINES;
-	wcex.lpszClassName	= szWindowClass;
-	wcex.hIconSm		= LoadIcon(wcex.hInstance, (LPCTSTR)IDI_SMALL);
+	wcex.style = CS_HREDRAW | CS_VREDRAW;
+	wcex.lpfnWndProc = (WNDPROC)WndProc;
+	wcex.cbClsExtra = 0;
+	wcex.cbWndExtra = 0;
+	wcex.hInstance = hInstance;
+	wcex.hIcon = LoadIcon(hInst, (LPCTSTR)IDI_LINES);
+	wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
+	wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
+	wcex.lpszMenuName = (LPCSTR)IDC_LINES;
+	wcex.lpszClassName = szWindowClass;
+	wcex.hIconSm = LoadIcon(wcex.hInstance, (LPCTSTR)IDI_SMALL);
 
 	return RegisterClassEx(&wcex);
 }
 
-// Создание и отображение окна
+// РЎРѕР·РґР°РЅРёРµ Рё РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ РѕРєРЅР°
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
-   hWnd = CreateWindow(szWindowClass, szTitle, 
-	   WS_OVERLAPPED|WS_CAPTION|WS_SYSMENU|WS_MINIMIZEBOX,// WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, NULL, NULL, hInstance, NULL);
+	hWnd = CreateWindow(szWindowClass, szTitle,
+		WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX,// WS_OVERLAPPEDWINDOW,
+		CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, NULL, NULL, hInstance, NULL);
 
-   if (!hWnd)
-   {
-      return FALSE;
-   }
+	if (!hWnd)
+	{
+		return FALSE;
+	}
 
-   ShowWindow(hWnd, nCmdShow);
-   UpdateWindow(hWnd);
+	ShowWindow(hWnd, nCmdShow);
+	UpdateWindow(hWnd);
 
-   return TRUE;
+	return TRUE;
 }
 
-// Главная функция окна
+// Р“Р»Р°РІРЅР°СЏ С„СѓРЅРєС†РёСЏ РѕРєРЅР°
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	static PAINTSTRUCT ps;
@@ -396,11 +430,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	static HKEY hKey;
 	static cell l;
 	static int temp;
-	static	FILE *f;
+	static	FILE* f;
 
-	switch (message) 
+	switch (message)
 	{
-// Обработка сообщения при создании окна
+		// РћР±СЂР°Р±РѕС‚РєР° СЃРѕРѕР±С‰РµРЅРёСЏ РїСЂРё СЃРѕР·РґР°РЅРёРё РѕРєРЅР°
 	case WM_CREATE:
 		randomize();
 
@@ -411,68 +445,68 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		bmp[4] = &bmp_jump[0];
 		bmp[5] = &bmp_explode[0];
 
-		bmp_0 = LoadBitmap(hInst,MAKEINTRESOURCE(IDB_0));
-		bmp_prestand = LoadBitmap(hInst,MAKEINTRESOURCE(IDB_PRESTAND));
+		bmp_0 = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_0));
+		bmp_prestand = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_PRESTAND));
 
-		bmp_appear[0] = LoadBitmap(hInst,MAKEINTRESOURCE(IDB_APPEAR_1));
-		bmp_appear[1] = LoadBitmap(hInst,MAKEINTRESOURCE(IDB_APPEAR_2));
-		bmp_appear[2] = LoadBitmap(hInst,MAKEINTRESOURCE(IDB_APPEAR_3));
-		bmp_appear[3] = LoadBitmap(hInst,MAKEINTRESOURCE(IDB_APPEAR_4));
+		bmp_appear[0] = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_APPEAR_1));
+		bmp_appear[1] = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_APPEAR_2));
+		bmp_appear[2] = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_APPEAR_3));
+		bmp_appear[3] = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_APPEAR_4));
 
-		bmp_stand = LoadBitmap(hInst,MAKEINTRESOURCE(IDB_STAND));
+		bmp_stand = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_STAND));
 
-		bmp_jump[0] = LoadBitmap(hInst,MAKEINTRESOURCE(IDB_JUMP_3));
-		bmp_jump[1] = LoadBitmap(hInst,MAKEINTRESOURCE(IDB_JUMP_2));
-		bmp_jump[2] = LoadBitmap(hInst,MAKEINTRESOURCE(IDB_JUMP_1));
-		bmp_jump[3] = LoadBitmap(hInst,MAKEINTRESOURCE(IDB_JUMP_2));
-		bmp_jump[4] = LoadBitmap(hInst,MAKEINTRESOURCE(IDB_JUMP_3));
-		bmp_jump[5] = LoadBitmap(hInst,MAKEINTRESOURCE(IDB_STAND));
-		bmp_jump[6] = LoadBitmap(hInst,MAKEINTRESOURCE(IDB_JUMP_4));
-		bmp_jump[7] = LoadBitmap(hInst,MAKEINTRESOURCE(IDB_JUMP_5));
-		bmp_jump[8] = LoadBitmap(hInst,MAKEINTRESOURCE(IDB_JUMP_6));
-		bmp_jump[9] = LoadBitmap(hInst,MAKEINTRESOURCE(IDB_JUMP_5));
-		bmp_jump[10] = LoadBitmap(hInst,MAKEINTRESOURCE(IDB_JUMP_4));
-		bmp_jump[11] = LoadBitmap(hInst,MAKEINTRESOURCE(IDB_STAND));
+		bmp_jump[0] = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_JUMP_3));
+		bmp_jump[1] = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_JUMP_2));
+		bmp_jump[2] = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_JUMP_1));
+		bmp_jump[3] = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_JUMP_2));
+		bmp_jump[4] = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_JUMP_3));
+		bmp_jump[5] = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_STAND));
+		bmp_jump[6] = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_JUMP_4));
+		bmp_jump[7] = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_JUMP_5));
+		bmp_jump[8] = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_JUMP_6));
+		bmp_jump[9] = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_JUMP_5));
+		bmp_jump[10] = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_JUMP_4));
+		bmp_jump[11] = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_STAND));
 
-		bmp_explode[0] = LoadBitmap(hInst,MAKEINTRESOURCE(IDB_EXPLODE_1));
-		bmp_explode[1] = LoadBitmap(hInst,MAKEINTRESOURCE(IDB_EXPLODE_2));
-		bmp_explode[2] = LoadBitmap(hInst,MAKEINTRESOURCE(IDB_EXPLODE_3));
-		bmp_explode[3] = LoadBitmap(hInst,MAKEINTRESOURCE(IDB_EXPLODE_4));
-		bmp_explode[4] = LoadBitmap(hInst,MAKEINTRESOURCE(IDB_EXPLODE_5));
-		bmp_explode[5] = LoadBitmap(hInst,MAKEINTRESOURCE(IDB_EXPLODE_6));
-		bmp_explode[6] = LoadBitmap(hInst,MAKEINTRESOURCE(IDB_EXPLODE_7));
-		bmp_explode[7] = LoadBitmap(hInst,MAKEINTRESOURCE(IDB_EXPLODE_8));
-		bmp_explode[8] = LoadBitmap(hInst,MAKEINTRESOURCE(IDB_EXPLODE_9));
+		bmp_explode[0] = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_EXPLODE_1));
+		bmp_explode[1] = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_EXPLODE_2));
+		bmp_explode[2] = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_EXPLODE_3));
+		bmp_explode[3] = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_EXPLODE_4));
+		bmp_explode[4] = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_EXPLODE_5));
+		bmp_explode[5] = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_EXPLODE_6));
+		bmp_explode[6] = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_EXPLODE_7));
+		bmp_explode[7] = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_EXPLODE_8));
+		bmp_explode[8] = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_EXPLODE_9));
 
-		bmp_numbers = LoadBitmap(hInst,MAKEINTRESOURCE(IDB_NUMBERS));
-		bmp_points = LoadBitmap(hInst,MAKEINTRESOURCE(IDB_POINTS));
+		bmp_numbers = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_NUMBERS));
+		bmp_points = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_POINTS));
 
 		hDC = GetDC(hWnd);
 		hCompatibleDC = CreateCompatibleDC(hDC);
 
-		#ifdef LOGGING
+#ifdef LOGGING
 		//log = fopen("lines.log","wt");
 		mylog = fopen("lines.log", "wt"); //medo
-		#endif
+#endif
 
 		GetInfo();
-		hMenu = GetSubMenu(GetMenu(hWnd),0);
-		CheckMenuItem(hMenu, gametype+IDM_EASY, MF_CHECKED);
-		GetWindowRect(hWnd,&Rect);
-		MoveWindow(hWnd,Rect.left,Rect.top,CELL_SIZE*max_x+7,TOP_HEIGHT+CELL_SIZE*max_y+MENU_HEIGHT,TRUE);
+		hMenu = GetSubMenu(GetMenu(hWnd), 0);
+		CheckMenuItem(hMenu, gametype + IDM_EASY, MF_CHECKED);
+		GetWindowRect(hWnd, &Rect);
+		MoveWindow(hWnd, Rect.left, Rect.top, CELL_SIZE * max_x + 7, TOP_HEIGHT + CELL_SIZE * max_y + MENU_HEIGHT, TRUE);
 		NewGame();
 
-		SetTimer(hWnd,0,1000,NULL);
+		SetTimer(hWnd, 0, 1000, NULL);
 		break;
 
-// Обработка сообщения от нажатия левой кнопки мыши
+		// РћР±СЂР°Р±РѕС‚РєР° СЃРѕРѕР±С‰РµРЅРёСЏ РѕС‚ РЅР°Р¶Р°С‚РёСЏ Р»РµРІРѕР№ РєРЅРѕРїРєРё РјС‹С€Рё
 	case WM_LBUTTONDOWN:
-		click_ball.posx = LOWORD(lParam)/CELL_SIZE;
-		click_ball.posy = (HIWORD(lParam)-TOP_HEIGHT)/45;
+		click_ball.posx = LOWORD(lParam) / CELL_SIZE;
+		click_ball.posy = (HIWORD(lParam) - TOP_HEIGHT) / 45;
 		ALines(0);
 		break;
 
-// Обработка сообщения от таймера
+		// РћР±СЂР°Р±РѕС‚РєР° СЃРѕРѕР±С‰РµРЅРёСЏ РѕС‚ С‚Р°Р№РјРµСЂР°
 	case WM_TIMER:
 		switch (LOWORD(wParam))
 		{
@@ -486,25 +520,25 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		}
 		break;
 
-// Обработка сообщения WM_COMMAND
+		// РћР±СЂР°Р±РѕС‚РєР° СЃРѕРѕР±С‰РµРЅРёСЏ WM_COMMAND
 	case WM_COMMAND:
 		switch (LOWORD(wParam))
 		{
 		case IDM_EASY:
-			max_x=9;
-			max_y=6;
+			max_x = 9;
+			max_y = 6;
 			app_balls = 2;
 			del_balls = 4;
 			break;
 		case IDM_NORMAL:
-			max_x=9;
-			max_y=9;
+			max_x = 9;
+			max_y = 9;
 			app_balls = 3;
 			del_balls = 5;
 			break;
 		case IDM_HARD:
-			max_x=20;
-			max_y=12;
+			max_x = 20;
+			max_y = 12;
 			app_balls = 10;
 			del_balls = 4;
 			break;
@@ -525,14 +559,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		case IDM_NORMAL:
 		case IDM_HARD:
 		case IDM_CUSTOM:
-			CheckMenuItem(hMenu, gametype+IDM_EASY, MF_UNCHECKED);
-			CheckMenuItem(hMenu,LOWORD(wParam), MF_CHECKED);
-			gametype=LOWORD(wParam)-IDM_EASY;
-			GetWindowRect(hWnd,&Rect);
-			MoveWindow(hWnd,Rect.left,Rect.top,CELL_SIZE*max_x+7,TOP_HEIGHT+CELL_SIZE*max_y+MENU_HEIGHT,TRUE);
+			CheckMenuItem(hMenu, gametype + IDM_EASY, MF_UNCHECKED);
+			CheckMenuItem(hMenu, LOWORD(wParam), MF_CHECKED);
+			gametype = LOWORD(wParam) - IDM_EASY;
+			GetWindowRect(hWnd, &Rect);
+			MoveWindow(hWnd, Rect.left, Rect.top, CELL_SIZE * max_x + 7, TOP_HEIGHT + CELL_SIZE * max_y + MENU_HEIGHT, TRUE);
 		case IDM_NEW:
 			NewGame();
-			InvalidateRect(hWnd,NULL,FALSE);
+			InvalidateRect(hWnd, NULL, FALSE);
 			break;
 		case IDM_BESTRESULTS:
 			DialogBox(hInst, (LPCTSTR)IDD_BESTRESULTSBOX, hWnd, (DLGPROC)BestResults);
@@ -542,18 +576,18 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 		}
 		break;
-// Обработка сообщения при отрисовке окна
+		// РћР±СЂР°Р±РѕС‚РєР° СЃРѕРѕР±С‰РµРЅРёСЏ РїСЂРё РѕС‚СЂРёСЃРѕРІРєРµ РѕРєРЅР°
 	case WM_PAINT:
 		BeginPaint(hWnd, &ps);
 
 		DrawTop();
-		for (l.posx=0;l.posx<max_x;l.posx++)
-		for(l.posy=0;l.posy<max_y;l.posy++)
-			l.DrawState();
+		for (l.posx = 0; l.posx < max_x; l.posx++)
+			for (l.posy = 0; l.posy < max_y; l.posy++)
+				l.DrawState();
 
 		EndPaint(hWnd, &ps);
 		break;
-// Обработка сообщения при уничтожении окна
+		// РћР±СЂР°Р±РѕС‚РєР° СЃРѕРѕР±С‰РµРЅРёСЏ РїСЂРё СѓРЅРёС‡С‚РѕР¶РµРЅРёРё РѕРєРЅР°
 	case WM_DESTROY:
 		DeleteObject(bmp_0);
 		DeleteObject(bmp_prestand);
@@ -587,429 +621,429 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		DeleteObject(bmp_points);
 
 		DeleteDC(hCompatibleDC);
-		ReleaseDC(hWnd,hDC);
+		ReleaseDC(hWnd, hDC);
 
 		WriteInfo();
 
-		#ifdef LOGGING
+#ifdef LOGGING
 		//fclose(log);
 		fclose(mylog); //medo
-		#endif
+#endif
 
 		PostQuitMessage(0);
 		break;
-// Обработка сообщения по умолчанию
+		// РћР±СЂР°Р±РѕС‚РєР° СЃРѕРѕР±С‰РµРЅРёСЏ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 	default:
 		return DefWindowProc(hWnd, message, wParam, lParam);
 	}
 	return 0;
 }
 
-// Главная функция окна диалога About
+// Р“Р»Р°РІРЅР°СЏ С„СѓРЅРєС†РёСЏ РѕРєРЅР° РґРёР°Р»РѕРіР° About
 LRESULT CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	switch (message)
 	{
-		case WM_INITDIALOG:
-				return TRUE;
+	case WM_INITDIALOG:
+		return TRUE;
 
-		case WM_COMMAND:
-			if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL) 
-			{
-				EndDialog(hDlg, LOWORD(wParam));
-				return TRUE;
-			}
-			break;
+	case WM_COMMAND:
+		if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
+		{
+			EndDialog(hDlg, LOWORD(wParam));
+			return TRUE;
+		}
+		break;
 	}
-    return FALSE;
+	return FALSE;
 }
 
-// Главная функция окна диалога Custom
+// Р“Р»Р°РІРЅР°СЏ С„СѓРЅРєС†РёСЏ РѕРєРЅР° РґРёР°Р»РѕРіР° Custom
 LRESULT CALLBACK Custom(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	static char szVal[10];
 
 	switch (message)
 	{
-		case WM_INITDIALOG:
-			//ostrstream(szVal,sizeof(szVal)) << max_x << ends;
-			std::ostrstream(szVal, sizeof(szVal)) << max_x << std::ends; //medo 
-			SendDlgItemMessage(hDlg, IDC_EDIT1, WM_SETTEXT, (WPARAM)0,(LPARAM)szVal);
-			//ostrstream(szVal,sizeof(szVal)) << max_y << ends;
-			std::ostrstream(szVal, sizeof(szVal)) << max_y << std::ends; //medo
-			SendDlgItemMessage(hDlg, IDC_EDIT2, WM_SETTEXT, (WPARAM)0,(LPARAM)szVal);
-			//ostrstream(szVal,sizeof(szVal)) << app_balls << ends;
-			std::ostrstream(szVal, sizeof(szVal)) << app_balls << std::ends; //medo
-			SendDlgItemMessage(hDlg, IDC_EDIT3, WM_SETTEXT, (WPARAM)0,(LPARAM)szVal);
-			//ostrstream(szVal,sizeof(szVal)) << del_balls << ends;
-			std::ostrstream(szVal, sizeof(szVal)) << del_balls << std::ends; //medo
-			SendDlgItemMessage(hDlg, IDC_EDIT4, WM_SETTEXT, (WPARAM)0,(LPARAM)szVal);
-			return TRUE;
+	case WM_INITDIALOG:
+		//ostrstream(szVal,sizeof(szVal)) << max_x << ends;
+		std::ostrstream(szVal, sizeof(szVal)) << max_x << std::ends; //medo 
+		SendDlgItemMessage(hDlg, IDC_EDIT1, WM_SETTEXT, (WPARAM)0, (LPARAM)szVal);
+		//ostrstream(szVal,sizeof(szVal)) << max_y << ends;
+		std::ostrstream(szVal, sizeof(szVal)) << max_y << std::ends; //medo
+		SendDlgItemMessage(hDlg, IDC_EDIT2, WM_SETTEXT, (WPARAM)0, (LPARAM)szVal);
+		//ostrstream(szVal,sizeof(szVal)) << app_balls << ends;
+		std::ostrstream(szVal, sizeof(szVal)) << app_balls << std::ends; //medo
+		SendDlgItemMessage(hDlg, IDC_EDIT3, WM_SETTEXT, (WPARAM)0, (LPARAM)szVal);
+		//ostrstream(szVal,sizeof(szVal)) << del_balls << ends;
+		std::ostrstream(szVal, sizeof(szVal)) << del_balls << std::ends; //medo
+		SendDlgItemMessage(hDlg, IDC_EDIT4, WM_SETTEXT, (WPARAM)0, (LPARAM)szVal);
+		return TRUE;
 
-		case WM_COMMAND:
-			if (LOWORD(wParam) == IDOK) 
-			{
-				SendDlgItemMessage(hDlg, IDC_EDIT1, WM_GETTEXT, (WPARAM)sizeof(szVal),(LPARAM)szVal);
-				//istrstream(szVal,sizeof(szVal)) >> max_x;
-				std::istrstream(szVal, sizeof(szVal)) >> max_x; //medo
-				SendDlgItemMessage(hDlg, IDC_EDIT2, WM_GETTEXT, (WPARAM)sizeof(szVal),(LPARAM)szVal);
-				//istrstream(szVal,sizeof(szVal)) >> max_y;
-				std::istrstream(szVal,sizeof(szVal)) >> max_y; //medo
-				SendDlgItemMessage(hDlg, IDC_EDIT3, WM_GETTEXT, (WPARAM)sizeof(szVal),(LPARAM)szVal);
-				//istrstream(szVal,sizeof(szVal)) >> app_balls;
-				std::istrstream(szVal, sizeof(szVal)) >> app_balls; //medo
-				SendDlgItemMessage(hDlg, IDC_EDIT4, WM_GETTEXT, (WPARAM)sizeof(szVal),(LPARAM)szVal);
-				//istrstream(szVal,sizeof(szVal)) >> del_balls;
-				std::istrstream(szVal, sizeof(szVal)) >> del_balls; //medo
-				EndDialog(hDlg, LOWORD(wParam));
-			}
-			if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL) 
-			{
-				EndDialog(hDlg, LOWORD(wParam));
-				return TRUE;
-			}
-			break;
+	case WM_COMMAND:
+		if (LOWORD(wParam) == IDOK)
+		{
+			SendDlgItemMessage(hDlg, IDC_EDIT1, WM_GETTEXT, (WPARAM)sizeof(szVal), (LPARAM)szVal);
+			//istrstream(szVal,sizeof(szVal)) >> max_x;
+			std::istrstream(szVal, sizeof(szVal)) >> max_x; //medo
+			SendDlgItemMessage(hDlg, IDC_EDIT2, WM_GETTEXT, (WPARAM)sizeof(szVal), (LPARAM)szVal);
+			//istrstream(szVal,sizeof(szVal)) >> max_y;
+			std::istrstream(szVal, sizeof(szVal)) >> max_y; //medo
+			SendDlgItemMessage(hDlg, IDC_EDIT3, WM_GETTEXT, (WPARAM)sizeof(szVal), (LPARAM)szVal);
+			//istrstream(szVal,sizeof(szVal)) >> app_balls;
+			std::istrstream(szVal, sizeof(szVal)) >> app_balls; //medo
+			SendDlgItemMessage(hDlg, IDC_EDIT4, WM_GETTEXT, (WPARAM)sizeof(szVal), (LPARAM)szVal);
+			//istrstream(szVal,sizeof(szVal)) >> del_balls;
+			std::istrstream(szVal, sizeof(szVal)) >> del_balls; //medo
+			EndDialog(hDlg, LOWORD(wParam));
+		}
+		if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
+		{
+			EndDialog(hDlg, LOWORD(wParam));
+			return TRUE;
+		}
+		break;
 	}
-    return FALSE;
+	return FALSE;
 }
 
-// Главная функция окна диалога BestResult
+// Р“Р»Р°РІРЅР°СЏ С„СѓРЅРєС†РёСЏ РѕРєРЅР° РґРёР°Р»РѕРіР° BestResult
 LRESULT CALLBACK BestResults(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	static char szVal[50];
-	static int i, h ,m1,m2,s1,s2;
+	static int i, h, m1, m2, s1, s2;
 
 	switch (message)
 	{
-		case WM_INITDIALOG:
-			for (i=0;i<3;i++)
-			{
-				h=leaders[i].time;
-				s2=h%60; h/=60;
-				s1=s2%10; s2/=10;
-				m2=h%60; h/=60;
-				m1=m2%10; m2/=10;
-				//ostrstream(szVal,sizeof(szVal)) << leaders[i].name<< ends;;
-				std::ostrstream(szVal,sizeof(szVal)) << leaders[i].name<< std::ends;; //medo
-				SendDlgItemMessage(hDlg, IDC_EDIT1+i, WM_SETTEXT, (WPARAM)0,(LPARAM)szVal);
-				//ostrstream(szVal,sizeof(szVal))<< leaders[i].score<<"   "<<h<<':'<<m2<<m1<<':'<<s2<<s1<< ends;
-				std::ostrstream(szVal, sizeof(szVal)) << leaders[i].score << "   " << h << ':' << m2 << m1 << ':' << s2 << s1 << std::ends; //medo
-				SendDlgItemMessage(hDlg, IDC_EDIT4+i, WM_SETTEXT, (WPARAM)0,(LPARAM)szVal);
-			}
-			return TRUE;
+	case WM_INITDIALOG:
+		for (i = 0; i < 3; i++)
+		{
+			h = leaders[i].time;
+			s2 = h % 60; h /= 60;
+			s1 = s2 % 10; s2 /= 10;
+			m2 = h % 60; h /= 60;
+			m1 = m2 % 10; m2 /= 10;
+			//ostrstream(szVal,sizeof(szVal)) << leaders[i].name<< ends;;
+			std::ostrstream(szVal, sizeof(szVal)) << leaders[i].name << std::ends;; //medo
+			SendDlgItemMessage(hDlg, IDC_EDIT1 + i, WM_SETTEXT, (WPARAM)0, (LPARAM)szVal);
+			//ostrstream(szVal,sizeof(szVal))<< leaders[i].score<<"   "<<h<<':'<<m2<<m1<<':'<<s2<<s1<< ends;
+			std::ostrstream(szVal, sizeof(szVal)) << leaders[i].score << "   " << h << ':' << m2 << m1 << ':' << s2 << s1 << std::ends; //medo
+			SendDlgItemMessage(hDlg, IDC_EDIT4 + i, WM_SETTEXT, (WPARAM)0, (LPARAM)szVal);
+		}
+		return TRUE;
 
-		case WM_COMMAND:
-			if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL) 
-			{
-				EndDialog(hDlg, LOWORD(wParam));
-				return TRUE;
-			}
-			break;
+	case WM_COMMAND:
+		if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
+		{
+			EndDialog(hDlg, LOWORD(wParam));
+			return TRUE;
+		}
+		break;
 	}
-    return FALSE;
+	return FALSE;
 }
-// Главная функция окна диалога GetName
+// Р“Р»Р°РІРЅР°СЏ С„СѓРЅРєС†РёСЏ РѕРєРЅР° РґРёР°Р»РѕРіР° GetName
 LRESULT CALLBACK GetName(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	static char szVal[30];
 
 	switch (message)
 	{
-		case WM_INITDIALOG:
-				return TRUE;
+	case WM_INITDIALOG:
+		return TRUE;
 
-		case WM_COMMAND:
-			if (LOWORD(wParam) == IDOK) 
-			{
-				SendDlgItemMessage(hDlg, IDC_EDIT1, WM_GETTEXT, (WPARAM)sizeof(szVal),(LPARAM)szVal);
-				//ostrstream(leaders[gametype].name,sizeof(leaders[gametype].name)) << szVal << ends;
-				std::ostrstream(leaders[gametype].name,sizeof(leaders[gametype].name)) << szVal << std::ends; //medo
-			}
-			if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL) 
-			{
-				EndDialog(hDlg, LOWORD(wParam));
-				return TRUE;
-			}
+	case WM_COMMAND:
+		if (LOWORD(wParam) == IDOK)
+		{
+			SendDlgItemMessage(hDlg, IDC_EDIT1, WM_GETTEXT, (WPARAM)sizeof(szVal), (LPARAM)szVal);
+			//ostrstream(leaders[gametype].name,sizeof(leaders[gametype].name)) << szVal << ends;
+			std::ostrstream(leaders[gametype].name, sizeof(leaders[gametype].name)) << szVal << std::ends; //medo
+		}
+		if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
+		{
+			EndDialog(hDlg, LOWORD(wParam));
+			return TRUE;
+		}
 
-			break;
+		break;
 	}
-    return FALSE;
+	return FALSE;
 }
 
-//Автомат "Управление игрой"
+//РђРІС‚РѕРјР°С‚ "РЈРїСЂР°РІР»РµРЅРёРµ РёРіСЂРѕР№"
 void ALines(int e)
 {
 	int y_old = y_lines;
 
-	switch(y_lines)
+	switch (y_lines)
 	{
-	//Поиск игрового шара
+		//РџРѕРёСЃРє РёРіСЂРѕРІРѕРіРѕ С€Р°СЂР°
 	case 0:
-		if (e==0 && xk1() )				{ z0();				y_lines=1;}
+		if (e == 0 && xk1()) { z0();				y_lines = 1; }
 		break;
-	//Поиск куда послать игровой шар 
+		//РџРѕРёСЃРє РєСѓРґР° РїРѕСЃР»Р°С‚СЊ РёРіСЂРѕРІРѕР№ С€Р°СЂ 
 	case 1:
-		if (e==0 && xk0() && x0() )		{ z1_2(); z1_1();	y_lines=2;}
-		else 
-		if (e==0 && xk1() )				{ z1_2(); z0(); z1_3();}
+		if (e == 0 && xk0() && x0()) { z1_2(); z1_1();	y_lines = 2; }
 		else
-		if (e==0 && xk2() )				{ z1_2();			y_lines=0;}
-		else
-		if (e==1)						{ z1_3(); }
+			if (e == 0 && xk1()) { z1_2(); z0(); z1_3(); }
+			else
+				if (e == 0 && xk2()) { z1_2();			y_lines = 0; }
+				else
+					if (e == 1) { z1_3(); }
 		break;
-	//Передвижение игрового шара
+		//РџРµСЂРµРґРІРёР¶РµРЅРёРµ РёРіСЂРѕРІРѕРіРѕ С€Р°СЂР°
 	case 2:
-		if	(e==1 && x1() && x2() )		{ z2_2(); z2_3();	y_lines=3;}
-		else if (e==1 && x1() )			{ z2_2(); z2_4();	y_lines=4;}
-		else if (e==1)					{ z2_1(); }
+		if (e == 1 && x1() && x2()) { z2_2(); z2_3();	y_lines = 3; }
+		else if (e == 1 && x1()) { z2_2(); z2_4();	y_lines = 4; }
+		else if (e == 1) { z2_1(); }
 		break;
-	//Удаление линии
+		//РЈРґР°Р»РµРЅРёРµ Р»РёРЅРёРё
 	case 3:
-		if (e==1 && x3() )				{ z3_2();			y_lines=0;}
-		else if (e==1)					{ z3_1(); }
+		if (e == 1 && x3()) { z3_2();			y_lines = 0; }
+		else if (e == 1) { z3_1(); }
 		break;
-	//Появление новых шаров
+		//РџРѕСЏРІР»РµРЅРёРµ РЅРѕРІС‹С… С€Р°СЂРѕРІ
 	case 4:
-		if (e==1 && x4() && x5() )		{ z4_2(); z2_3();	y_lines=3;}
-		else if (e==1 && x4() )			{ z4_2();			y_lines=0;}
-		else if (e==1)					{ z4_1(); }
+		if (e == 1 && x4() && x5()) { z4_2(); z2_3();	y_lines = 3; }
+		else if (e == 1 && x4()) { z4_2();			y_lines = 0; }
+		else if (e == 1) { z4_1(); }
 		break;
 	}
 
-	#ifdef LOGGING
-	if (y_lines!=y_old)
+#ifdef LOGGING
+	if (y_lines != y_old)
 	{
 		char s[30];
 		time_t t;
 		time(&t);
-		strftime(s,30,"%X", gmtime(&t));
-		//fprintf(log,"[%s] Автомат управления игрой из состояния \"%s\" перешел в состояние \"%s\".\n",s,aLines_states[y_old],aLines_states[y_lines]);
-		fprintf(mylog, "[%s] Автомат управления игрой из состояния \"%s\" перешел в состояние \"%s\".\n", s, aLines_states[y_old], aLines_states[y_lines]); //medo
+		strftime(s, 30, "%X", gmtime(&t));
+		//fprintf(log,"[%s] РђРІС‚РѕРјР°С‚ СѓРїСЂР°РІР»РµРЅРёСЏ РёРіСЂРѕР№ РёР· СЃРѕСЃС‚РѕСЏРЅРёСЏ \"%s\" РїРµСЂРµС€РµР» РІ СЃРѕСЃС‚РѕСЏРЅРёРµ \"%s\".\n",s,aLines_states[y_old],aLines_states[y_lines]);
+		fprintf(mylog, "[%s] РђРІС‚РѕРјР°С‚ СѓРїСЂР°РІР»РµРЅРёСЏ РёРіСЂРѕР№ РёР· СЃРѕСЃС‚РѕСЏРЅРёСЏ \"%s\" РїРµСЂРµС€РµР» РІ СЃРѕСЃС‚РѕСЏРЅРёРµ \"%s\".\n", s, aLines_states[y_old], aLines_states[y_lines]); //medo
 	}
-	#endif
-	
-	if (y_old!=y_lines)
-	switch(y_lines)
-	{
-	case 1:
-		z1_3();
-		break;
-	case 2:
-		z2_1();
-		break;
-	case 3:
-		z3_1();
-		break;
-	case 4:
-		z4_1();
-		break;
-	}
+#endif
+
+	if (y_old != y_lines)
+		switch (y_lines)
+		{
+		case 1:
+			z1_3();
+			break;
+		case 2:
+			z2_1();
+			break;
+		case 3:
+			z3_1();
+			break;
+		case 4:
+			z4_1();
+			break;
+		}
 }
 
-//ВХОДНЫЕ ПЕРЕМЕННЫЕ
+//Р’РҐРћР”РќР«Р• РџР•Р Р•РњР•РќРќР«Р•
 
-//Выбранная ячейка пуста
+//Р’С‹Р±СЂР°РЅРЅР°СЏ СЏС‡РµР№РєР° РїСѓСЃС‚Р°
 bool xk0()
 {
-	return (click_ball.State()==0 || click_ball.State()==1);
+	return (click_ball.State() == 0 || click_ball.State() == 1);
 }
-//В выбранной ячейке находиться шар
+//Р’ РІС‹Р±СЂР°РЅРЅРѕР№ СЏС‡РµР№РєРµ РЅР°С…РѕРґРёС‚СЊСЃСЏ С€Р°СЂ
 bool xk1()
 {
-	return (click_ball.State()==3);
+	return (click_ball.State() == 3);
 }
-//В выбранной ячейке находиться прыгающий шар
+//Р’ РІС‹Р±СЂР°РЅРЅРѕР№ СЏС‡РµР№РєРµ РЅР°С…РѕРґРёС‚СЊСЃСЏ РїСЂС‹РіР°СЋС‰РёР№ С€Р°СЂ
 bool xk2()
 {
-	return (click_ball.State()==4);
+	return (click_ball.State() == 4);
 }
 
-//Существует путь от активной ячейки до выбранной
+//РЎСѓС‰РµСЃС‚РІСѓРµС‚ РїСѓС‚СЊ РѕС‚ Р°РєС‚РёРІРЅРѕР№ СЏС‡РµР№РєРё РґРѕ РІС‹Р±СЂР°РЅРЅРѕР№
 bool x0()
 {
-	return FindPath(ball,click_ball);
+	return FindPath(ball, click_ball);
 }
-//Передвижение закончилось
+//РџРµСЂРµРґРІРёР¶РµРЅРёРµ Р·Р°РєРѕРЅС‡РёР»РѕСЃСЊ
 bool x1()
 {
 	return path.empty();
 }
-//Требуется удалить линии (после передвижения)
+//РўСЂРµР±СѓРµС‚СЃСЏ СѓРґР°Р»РёС‚СЊ Р»РёРЅРёРё (РїРѕСЃР»Рµ РїРµСЂРµРґРІРёР¶РµРЅРёСЏ)
 bool x2()
 {
 	return CheckLines(ball);
 }
-//Удаление закончилось
+//РЈРґР°Р»РµРЅРёРµ Р·Р°РєРѕРЅС‡РёР»РѕСЃСЊ
 bool x3()
 {
-	itr=explode_list.begin();
-	return (itr->State()==0);//N3
+	itr = explode_list.begin();
+	return (itr->State() == 0);//N3
 }
-//Появление закончилось
+//РџРѕСЏРІР»РµРЅРёРµ Р·Р°РєРѕРЅС‡РёР»РѕСЃСЊ
 bool x4()
 {
-	itr=appear_list.begin();
-	return (itr->State()==3);//N1
+	itr = appear_list.begin();
+	return (itr->State() == 3);//N1
 }
-//Требуется удалить линии (после появления шаров)
+//РўСЂРµР±СѓРµС‚СЃСЏ СѓРґР°Р»РёС‚СЊ Р»РёРЅРёРё (РїРѕСЃР»Рµ РїРѕСЏРІР»РµРЅРёСЏ С€Р°СЂРѕРІ)
 bool x5()
 {
-	itr=appear_list.begin();
-	while (itr!=appear_list.end())
+	itr = appear_list.begin();
+	while (itr != appear_list.end())
 		CheckLines(*itr++);
 
-	return (explode_list.size()!=0);
+	return (explode_list.size() != 0);
 }
 
-// ВЫХОДНЫЕ ВОЗДЕЙСТВИЯ
+// Р’Р«РҐРћР”РќР«Р• Р’РћР—Р”Р•Р™РЎРўР’РРЇ
 
-//Запустить прыжок
+//Р—Р°РїСѓСЃС‚РёС‚СЊ РїСЂС‹Р¶РѕРє
 void z0()
 {
-	SetTimer(hWnd,1,50,NULL);
-	ball=click_ball;
+	SetTimer(hWnd, 1, 50, NULL);
+	ball = click_ball;
 }
-//Запустить передвижение
+//Р—Р°РїСѓСЃС‚РёС‚СЊ РїРµСЂРµРґРІРёР¶РµРЅРёРµ
 void z1_1()
 {
-	SetTimer(hWnd,1,50,NULL);
-	ball_color=ball.Color();
+	SetTimer(hWnd, 1, 50, NULL);
+	ball_color = ball.Color();
 }
-//Закончить прыжок
+//Р—Р°РєРѕРЅС‡РёС‚СЊ РїСЂС‹Р¶РѕРє
 void z1_2()
 {
-	KillTimer(hWnd,1);
+	KillTimer(hWnd, 1);
 	ball.ACell(6);
 }
-//Прыгать
+//РџСЂС‹РіР°С‚СЊ
 void z1_3()
 {
 	ball.ACell(5);
 }
-//Передвинуть шар на следующую ячейку
+//РџРµСЂРµРґРІРёРЅСѓС‚СЊ С€Р°СЂ РЅР° СЃР»РµРґСѓСЋС‰СѓСЋ СЏС‡РµР№РєСѓ
 void z2_1()
 {
 	ball.ACell(0);
-	ball=path.top();
+	ball = path.top();
 	path.pop();
 	ball.ACell(1);
 }
-//Закончить передвижение
+//Р—Р°РєРѕРЅС‡РёС‚СЊ РїРµСЂРµРґРІРёР¶РµРЅРёРµ
 void z2_2()
 {
-	KillTimer(hWnd,1);
+	KillTimer(hWnd, 1);
 }
-//Запустить  удаление
+//Р—Р°РїСѓСЃС‚РёС‚СЊ  СѓРґР°Р»РµРЅРёРµ
 void z2_3()
 {
-	SetTimer(hWnd,1,20,NULL);
+	SetTimer(hWnd, 1, 20, NULL);
 }
-//Запустить появление
+//Р—Р°РїСѓСЃС‚РёС‚СЊ РїРѕСЏРІР»РµРЅРёРµ
 void z2_4()
 {
 	CheckAppearList();
-	SetTimer(hWnd,1,50,NULL);
+	SetTimer(hWnd, 1, 50, NULL);
 }
-//Удалить
+//РЈРґР°Р»РёС‚СЊ
 void z3_1()
 {
-	itr=explode_list.begin();
-	while (itr!=explode_list.end())
+	itr = explode_list.begin();
+	while (itr != explode_list.end())
 		(*itr++).ACell(4);
 }
-//Закончить удаление
+//Р—Р°РєРѕРЅС‡РёС‚СЊ СѓРґР°Р»РµРЅРёРµ
 void z3_2()
 {
-	KillTimer(hWnd,1);
+	KillTimer(hWnd, 1);
 
 	gamescore += (explode_list.size() - del_balls + 1) * explode_list.size();
 	DrawScore();
 
-	explode_list.clear(); 
+	explode_list.clear();
 }
-//Появление
+//РџРѕСЏРІР»РµРЅРёРµ
 void z4_1()
 {
-	itr=appear_list.begin();
-	while (itr!=appear_list.end())
+	itr = appear_list.begin();
+	while (itr != appear_list.end())
 		(*itr++).ACell(3);
 }
-//Закончить появление
+//Р—Р°РєРѕРЅС‡РёС‚СЊ РїРѕСЏРІР»РµРЅРёРµ
 void z4_2()
 {
-	KillTimer(hWnd,1);
+	KillTimer(hWnd, 1);
 	GenerateAppearList();
 }
 
-//Проверка что через ячейку in проходит подлещащая удаления линия(или несколько линии)
-bool CheckLines(const cell &in)
+//РџСЂРѕРІРµСЂРєР° С‡С‚Рѕ С‡РµСЂРµР· СЏС‡РµР№РєСѓ in РїСЂРѕС…РѕРґРёС‚ РїРѕРґР»РµС‰Р°С‰Р°СЏ СѓРґР°Р»РµРЅРёСЏ Р»РёРЅРёСЏ(РёР»Рё РЅРµСЃРєРѕР»СЊРєРѕ Р»РёРЅРёРё)
+bool CheckLines(const cell& in)
 {
-	int x=in.posx;
-	int y=in.posy;
-	int c=in.Color();
-	int i,j;
+	int x = in.posx;
+	int y = in.posy;
+	int c = in.Color();
+	int i, j;
 	cell l;
-	bool b=false;
+	bool b = false;
 
-	i=1;while ((x+i<max_x)&&(map[x+i][y].y == 3)&&(map[x+i][y].color == c)) ++i;
-	j=1;while((x-j>=0)&&(map[x-j][y].y == 3)&&(map[x-j][y].color == c)) ++j;
-	if (j+i-1>=del_balls)
+	i = 1; while ((x + i < max_x) && (map[x + i][y].y == 3) && (map[x + i][y].color == c)) ++i;
+	j = 1; while ((x - j >= 0) && (map[x - j][y].y == 3) && (map[x - j][y].color == c)) ++j;
+	if (j + i - 1 >= del_balls)
 	{
-		l.posx=x+i;
-		l.posy=y;
-		for(int k=0;k<i+j-1;k++)
+		l.posx = x + i;
+		l.posy = y;
+		for (int k = 0; k < i + j - 1; k++)
 		{
 			l.posx--;
 			explode_list.push_back(l);
 		}
-		b=true;
+		b = true;
 	}
 
-	i=1;while ((y+i<max_y)&&(map[x][y+i].y == 3)&&(map[x][y+i].color == c)) ++i;
-	j=1;while((y-j>=0)&&(map[x][y-j].y == 3)&&(map[x][y-j].color == c)) ++j;
-	if (j+i-1>=del_balls)
+	i = 1; while ((y + i < max_y) && (map[x][y + i].y == 3) && (map[x][y + i].color == c)) ++i;
+	j = 1; while ((y - j >= 0) && (map[x][y - j].y == 3) && (map[x][y - j].color == c)) ++j;
+	if (j + i - 1 >= del_balls)
 	{
-		l.posx=x;
-		l.posy=y+i;
-		for(int k=0;k<i+j-1;k++)
+		l.posx = x;
+		l.posy = y + i;
+		for (int k = 0; k < i + j - 1; k++)
 		{
 			l.posy--;
 			explode_list.push_back(l);
 		}
-		b=true;
+		b = true;
 	}
 
-	i=1;while ((x+i<max_x)&&(y+i<max_y)&&(map[x+i][y+i].y == 3)&&(map[x+i][y+i].color == c)) ++i;
-	j=1;while((x-j>=0)&&(y-j>=0)&&(map[x-j][y-j].y == 3)&&(map[x-j][y-j].color == c)) ++j;
-	if (j+i-1>=del_balls)
+	i = 1; while ((x + i < max_x) && (y + i < max_y) && (map[x + i][y + i].y == 3) && (map[x + i][y + i].color == c)) ++i;
+	j = 1; while ((x - j >= 0) && (y - j >= 0) && (map[x - j][y - j].y == 3) && (map[x - j][y - j].color == c)) ++j;
+	if (j + i - 1 >= del_balls)
 	{
-		l.posx=x+i;
-		l.posy=y+i;
-		for(int k=0;k<i+j-1;k++)
+		l.posx = x + i;
+		l.posy = y + i;
+		for (int k = 0; k < i + j - 1; k++)
 		{
 			l.posx--;
 			l.posy--;
 			explode_list.push_back(l);
 		}
-		b=true;
+		b = true;
 	}
 
-	i=1;while ((x+i<max_x)&&(y-i>=0)&&(map[x+i][y-i].y == 3)&&(map[x+i][y-i].color == c)) ++i;
-	j=1;while((x-j>=0)&&(y+j<max_y)&&(map[x-j][y+j].y == 3)&&(map[x-j][y+j].color == c)) ++j;
-	if (j+i-1>=del_balls)
+	i = 1; while ((x + i < max_x) && (y - i >= 0) && (map[x + i][y - i].y == 3) && (map[x + i][y - i].color == c)) ++i;
+	j = 1; while ((x - j >= 0) && (y + j < max_y) && (map[x - j][y + j].y == 3) && (map[x - j][y + j].color == c)) ++j;
+	if (j + i - 1 >= del_balls)
 	{
-		l.posx=x+i;
-		l.posy=y-i;
-		for(int k=0;k<i+j-1;k++)
+		l.posx = x + i;
+		l.posy = y - i;
+		for (int k = 0; k < i + j - 1; k++)
 		{
 			l.posx--;
 			l.posy++;
 			explode_list.push_back(l);
 		}
-		b=true;
+		b = true;
 	}
 
-	if (b) 
+	if (b)
 	{
 		explode_list.remove(in);
 		explode_list.push_back(in);
@@ -1019,34 +1053,34 @@ bool CheckLines(const cell &in)
 
 }
 
-//Поиск пути следования шарика из ячейки from в in
-bool FindPath(const cell &from, const cell &in)
+//РџРѕРёСЃРє РїСѓС‚Рё СЃР»РµРґРѕРІР°РЅРёСЏ С€Р°СЂРёРєР° РёР· СЏС‡РµР№РєРё from РІ in
+bool FindPath(const cell& from, const cell& in)
 {
 	struct
 	{
 		cell pred;
 		int mark;
-	} 
+	}
 	v[MAX_MAP_X][MAX_MAP_Y];
-	
-	cell k,l;
+
+	cell k, l;
 
 	std::queue<cell> q;
 
-	for (int i=0;i<max_x;i++)
-	for(int j=0;j<max_y;j++)
-		v[i][j].mark = 0;
+	for (int i = 0; i < max_x; i++)
+		for (int j = 0; j < max_y; j++)
+			v[i][j].mark = 0;
 
-	v[from.posx][from.posy].mark=1;
+	v[from.posx][from.posy].mark = 1;
 	q.push(from);
 
 	while (!q.empty())
 	{
-		k=q.front();
-		for (int i=0;i<4;i++)
+		k = q.front();
+		for (int i = 0; i < 4; i++)
 		{
-			l=k;
-			switch(i)
+			l = k;
+			switch (i)
 			{
 			case 0:
 				l.posx--;
@@ -1063,18 +1097,18 @@ bool FindPath(const cell &from, const cell &in)
 			}
 			if (Valid(l) && !v[l.posx][l.posy].mark)
 			{
-				v[l.posx][l.posy].mark=1;
-				v[l.posx][l.posy].pred=k;
+				v[l.posx][l.posy].mark = 1;
+				v[l.posx][l.posy].pred = k;
 				q.push(l);
 
-				if (l==in)
+				if (l == in)
 				{
 					do
 					{
 						path.push(l);
 						l = v[l.posx][l.posy].pred;
 
-					} while (l!=from);
+					} while (l != from);
 					return true;
 				}
 			}
@@ -1087,19 +1121,19 @@ bool FindPath(const cell &from, const cell &in)
 	return false;
 }
 
-// Проверить список появляющихся шаров на предмент занятости соответствующей ячейки
+// РџСЂРѕРІРµСЂРёС‚СЊ СЃРїРёСЃРѕРє РїРѕСЏРІР»СЏСЋС‰РёС…СЃСЏ С€Р°СЂРѕРІ РЅР° РїСЂРµРґРјРµРЅС‚ Р·Р°РЅСЏС‚РѕСЃС‚Рё СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РµР№ СЏС‡РµР№РєРё
 void CheckAppearList()
 {
 	int tmp;
-	itr=appear_list.begin();
-	while (itr!=appear_list.end())
+	itr = appear_list.begin();
+	while (itr != appear_list.end())
 	{
-		if (itr->State()==3)
+		if (itr->State() == 3)
 		{
-			tmp=itr->PreColor();
-			itr->PreColor()=-1;
+			tmp = itr->PreColor();
+			itr->PreColor() = -1;
 			FindEmptyCell(*itr);
-			itr->PreColor()=tmp;
+			itr->PreColor() = tmp;
 			(*itr).ACell(2);
 		}
 		++itr;
@@ -1107,12 +1141,12 @@ void CheckAppearList()
 
 }
 
-//Создать список появляющихся шаров
+//РЎРѕР·РґР°С‚СЊ СЃРїРёСЃРѕРє РїРѕСЏРІР»СЏСЋС‰РёС…СЃСЏ С€Р°СЂРѕРІ
 void GenerateAppearList()
 {
 	appear_list.clear();
 	cell l;
-	for(int i=0;i<app_balls;i++)
+	for (int i = 0; i < app_balls; i++)
 		if (FindEmptyCell(l))
 		{
 			appear_list.push_back(l);
@@ -1122,28 +1156,28 @@ void GenerateAppearList()
 
 }
 
-//Найти пустую ячейку
-bool FindEmptyCell(cell &in)
+//РќР°Р№С‚Рё РїСѓСЃС‚СѓСЋ СЏС‡РµР№РєСѓ
+bool FindEmptyCell(cell& in)
 {
 	cell l;
-	l.posx=random(max_x);
-	l.posy=random(max_y);
+	l.posx = random(max_x);
+	l.posy = random(max_y);
 
-	if (l.State()==0)
+	if (l.State() == 0)
 	{
-		in=l;
+		in = l;
 		return true;
 	};
-	
-	for (int i=0;i<max_x*max_y;i++)
-	{
-		if (l.posx!=max_x-1) l.posx++;
-		else if (l.posy!=max_y-1) {l.posy++;l.posx=0;}
-			else {l.posx=0;l.posy=0;};
 
-		if (l.State()==0)
+	for (int i = 0; i < max_x * max_y; i++)
+	{
+		if (l.posx != max_x - 1) l.posx++;
+		else if (l.posy != max_y - 1) { l.posy++; l.posx = 0; }
+		else { l.posx = 0; l.posy = 0; };
+
+		if (l.State() == 0)
 		{
-			in=l;
+			in = l;
 			return true;
 		}
 	}
@@ -1152,169 +1186,170 @@ bool FindEmptyCell(cell &in)
 	return false;
 }
 
-//Проверить можно ли через ячейку in двигатся шару
-bool Valid(const cell &in)
+//РџСЂРѕРІРµСЂРёС‚СЊ РјРѕР¶РЅРѕ Р»Рё С‡РµСЂРµР· СЏС‡РµР№РєСѓ in РґРІРёРіР°С‚СЃСЏ С€Р°СЂСѓ
+bool Valid(const cell& in)
 {
 	return (in.posx >= 0) && (in.posx < max_x) && (in.posy >= 0) && (in.posy < max_y) && (in.State() == 0 || in.State() == 1);
 }
 
-//Подготовка ресурсов для новой игры 
+//РџРѕРґРіРѕС‚РѕРІРєР° СЂРµСЃСѓСЂСЃРѕРІ РґР»СЏ РЅРѕРІРѕР№ РёРіСЂС‹ 
 void NewGame()
 {
-	for (int i=0;i<max_x;i++)
-	for(int j=0;j<max_y;j++)
-	{
-		map[i][j].y=0;
-		map[i][j].color=0;
-		map[i][j].pre_color=-1;
-		map[i][j].num_pic=0;
-	}
+	for (int i = 0; i < max_x; i++)
+		for (int j = 0; j < max_y; j++)
+		{
+			map[i][j].y = 0;
+			map[i][j].color = 0;
+			map[i][j].pre_color = -1;
+			map[i][j].num_pic = 0;
+		}
 
-	y_lines =0;
+	y_lines = 0;
 
 	gamescore = 0;
 	gametime = 0;
 
-	#ifdef LOGGING
+#ifdef LOGGING
 	char s[30];
 	time_t t;
 	time(&t);
-	strftime(s,30,"%X", gmtime(&t));
-	//fprintf(log,"[%s] Новая игра\n",s);
-	fprintf(mylog, "[%s] Новая игра\n", s); //medo
-	#endif
+	strftime(s, 30, "%X", gmtime(&t));
+	//fprintf(log,"[%s] РќРѕРІР°СЏ РёРіСЂР°\n",s);
+	fprintf(mylog, "[%s] РќРѕРІР°СЏ РёРіСЂР°\n", s); //medo
+#endif
 
-	SetTimer(hWnd,0,1000,NULL);
+	SetTimer(hWnd, 0, 1000, NULL);
 
 	cell l;
 
-	for(int i=0;i<del_balls;i++)
+	for (int i = 0; i < del_balls; i++)
 	{
 		FindEmptyCell(l);
-		ball_color=random(7);
+		ball_color = random(7);
 		l.ACell(1);
 	}
 	GenerateAppearList();
 
 }
 
-//Обработка окончания игрового процесса
+//РћР±СЂР°Р±РѕС‚РєР° РѕРєРѕРЅС‡Р°РЅРёСЏ РёРіСЂРѕРІРѕРіРѕ РїСЂРѕС†РµСЃСЃР°
 void GameOver()
 {
-	KillTimer(hWnd,0);
+	KillTimer(hWnd, 0);
 
-	#ifdef LOGGING
+#ifdef LOGGING
 	char s[30];
 	time_t t;
 	time(&t);
-	strftime(s,30,"%X", gmtime(&t));
-	//fprintf(log,"[%s] Конец игры\n",s);
-	fprintf(mylog,"[%s] Конец игры\n",s); //medo
-	#endif
+	strftime(s, 30, "%X", gmtime(&t));
+	//fprintf(log,"[%s] РљРѕРЅРµС† РёРіСЂС‹\n",s);
+	fprintf(mylog, "[%s] РљРѕРЅРµС† РёРіСЂС‹\n", s); //medo
+#endif
 
-	if (gametype<3)
+	if (gametype < 3)
 	{
-		if (leaders[gametype].score<gamescore || (leaders[gametype].score==gamescore && leaders[gametype].time>gametime))
+		if (leaders[gametype].score < gamescore || (leaders[gametype].score == gamescore && leaders[gametype].time > gametime))
 		{
 			DialogBox(hInst, (LPCTSTR)IDD_GETNAMEBOX, hWnd, (DLGPROC)GetName);
-			leaders[gametype].score=gamescore;
-			leaders[gametype].time=gametime;
+			leaders[gametype].score = gamescore;
+			leaders[gametype].time = gametime;
 		}
 		else DialogBox(hInst, (LPCTSTR)IDD_BESTRESULTSBOX, hWnd, (DLGPROC)BestResults);
-	} else MessageBox(hWnd,"Your custom game is over...", "Condolences",MB_OK);
+	}
+	else MessageBox(hWnd, "Your custom game is over...", "Condolences", MB_OK);
 	NewGame();
-	InvalidateRect(hWnd,NULL,FALSE);
+	InvalidateRect(hWnd, NULL, FALSE);
 }
-//Отрисовать на табло продолжительность игры
+//РћС‚СЂРёСЃРѕРІР°С‚СЊ РЅР° С‚Р°Р±Р»Рѕ РїСЂРѕРґРѕР»Р¶РёС‚РµР»СЊРЅРѕСЃС‚СЊ РёРіСЂС‹
 void DrawTime()
 {
 	SelectObject(hCompatibleDC, bmp_numbers);
-	int h=gametime;
-	int s2=h%60; h/=60;
-	int s1=s2%10; s2/=10;
-	int m2=h%60; h/=60;
-	int m1=m2%10; m2/=10;
-	BitBlt(hDC,max_x*CELL_SIZE-29,5,20,37,hCompatibleDC,s1*19,0,SRCCOPY);
-	BitBlt(hDC,max_x*CELL_SIZE-50,5,20,37,hCompatibleDC,s2*19,0,SRCCOPY);
-	BitBlt(hDC,max_x*CELL_SIZE-77,5,20,37,hCompatibleDC,m1*19,0,SRCCOPY);
-	BitBlt(hDC,max_x*CELL_SIZE-98,5,20,37,hCompatibleDC,m2*19,0,SRCCOPY);
-	BitBlt(hDC,max_x*CELL_SIZE-125,5,20,37,hCompatibleDC,h*19,0,SRCCOPY);
+	int h = gametime;
+	int s2 = h % 60; h /= 60;
+	int s1 = s2 % 10; s2 /= 10;
+	int m2 = h % 60; h /= 60;
+	int m1 = m2 % 10; m2 /= 10;
+	BitBlt(hDC, max_x * CELL_SIZE - 29, 5, 20, 37, hCompatibleDC, s1 * 19, 0, SRCCOPY);
+	BitBlt(hDC, max_x * CELL_SIZE - 50, 5, 20, 37, hCompatibleDC, s2 * 19, 0, SRCCOPY);
+	BitBlt(hDC, max_x * CELL_SIZE - 77, 5, 20, 37, hCompatibleDC, m1 * 19, 0, SRCCOPY);
+	BitBlt(hDC, max_x * CELL_SIZE - 98, 5, 20, 37, hCompatibleDC, m2 * 19, 0, SRCCOPY);
+	BitBlt(hDC, max_x * CELL_SIZE - 125, 5, 20, 37, hCompatibleDC, h * 19, 0, SRCCOPY);
 	SelectObject(hCompatibleDC, bmp_points);
-	BitBlt(hDC,max_x*CELL_SIZE-56, 5,5,37,hCompatibleDC,0,0,SRCCOPY);
-	BitBlt(hDC,max_x*CELL_SIZE-104, 5,5,37,hCompatibleDC,0,0,SRCCOPY);
+	BitBlt(hDC, max_x * CELL_SIZE - 56, 5, 5, 37, hCompatibleDC, 0, 0, SRCCOPY);
+	BitBlt(hDC, max_x * CELL_SIZE - 104, 5, 5, 37, hCompatibleDC, 0, 0, SRCCOPY);
 }
-//Отрисовать на табло текущие очки
+//РћС‚СЂРёСЃРѕРІР°С‚СЊ РЅР° С‚Р°Р±Р»Рѕ С‚РµРєСѓС‰РёРµ РѕС‡РєРё
 void DrawScore()
 {
 	SelectObject(hCompatibleDC, bmp_numbers);
-	int t=gamescore;
-	for (int i=0; i<5; i++)
+	int t = gamescore;
+	for (int i = 0; i < 5; i++)
 	{
-		BitBlt(hDC,100-21*i,5, 20, 37, hCompatibleDC, (t%10)*19, 0, SRCCOPY);
-		t /=10;
+		BitBlt(hDC, 100 - 21 * i, 5, 20, 37, hCompatibleDC, (t % 10) * 19, 0, SRCCOPY);
+		t /= 10;
 	}
 }
-//Отрисовать табло
+//РћС‚СЂРёСЃРѕРІР°С‚СЊ С‚Р°Р±Р»Рѕ
 void DrawTop()
 {
-	PatBlt(hDC,0, 0, 46*max_x, 46, BLACKNESS);
+	PatBlt(hDC, 0, 0, 46 * max_x, 46, BLACKNESS);
 	DrawScore();
 	DrawTime();
 }
-//Проверить заданные параметры игры
+//РџСЂРѕРІРµСЂРёС‚СЊ Р·Р°РґР°РЅРЅС‹Рµ РїР°СЂР°РјРµС‚СЂС‹ РёРіСЂС‹
 void CheckCustomParameters()
 {
-	if (max_x<6) max_x=6;
-	if (max_x>20) max_x=20;
-	if (max_y<2) max_y=2;
-	if (max_y>12) max_y=12;
+	if (max_x < 6) max_x = 6;
+	if (max_x > MAX_MAP_X) max_x = MAX_MAP_X;
+	if (max_y < 2) max_y = 2;
+	if (max_y > MAX_MAP_Y) max_y = MAX_MAP_Y;
 
-	if (del_balls<2) del_balls=2;
+	if (del_balls < 2) del_balls = 2;
 
-	if (del_balls>(max_x>max_y?max_x:max_y)) del_balls = (max_x>max_y?max_x:max_y);
-	
-	if (app_balls+del_balls > max_x*max_y)
+	if (del_balls > (max_x > max_y ? max_x : max_y)) del_balls = (max_x > max_y ? max_x : max_y);
+
+	if (app_balls + del_balls > max_x * max_y)
 	{
-		app_balls=max_x*max_y-del_balls;
+		app_balls = max_x * max_y - del_balls;
 	}
 }
-//Получение информации о лучших игроках
+//РџРѕР»СѓС‡РµРЅРёРµ РёРЅС„РѕСЂРјР°С†РёРё Рѕ Р»СѓС‡С€РёС… РёРіСЂРѕРєР°С…
 void GetInfo()
 {
-	FILE *in;
-	if (in = fopen("leaders.dat","rb"))
+	FILE* in;
+	if (in = fopen("leaders.dat", "rb"))
 	{
-		fread(&gametype,sizeof(int),1,in);
-		fread(&max_x,sizeof(int),1,in);
-		fread(&max_y,sizeof(int),1,in);
-		fread(&app_balls,sizeof(int),1,in);
-		fread(&del_balls,sizeof(int),1,in);
-		for (int i=0;i<3;i++)
-			fread(&leaders[i],sizeof(info),1,in);
+		fread(&gametype, sizeof(int), 1, in);
+		fread(&max_x, sizeof(int), 1, in);
+		fread(&max_y, sizeof(int), 1, in);
+		fread(&app_balls, sizeof(int), 1, in);
+		fread(&del_balls, sizeof(int), 1, in);
+		for (int i = 0; i < 3; i++)
+			fread(&leaders[i], sizeof(info), 1, in);
 		fclose(in);
 	}
 	else
 	{
-		gametype=0;
-		max_x=9;max_y=9;
-		app_balls=3;del_balls=5;
-		for (int i=0;i<3;i++)
-			leaders[i]=null_leader;
+		gametype = 0;
+		max_x = 9; max_y = 9;
+		app_balls = 3; del_balls = 5;
+		for (int i = 0; i < 3; i++)
+			leaders[i] = null_leader;
 	}
 }
-//Сохранить информацию о лучших игроках
+//РЎРѕС…СЂР°РЅРёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ Р»СѓС‡С€РёС… РёРіСЂРѕРєР°С…
 void WriteInfo()
 {
-	FILE *out;
-	if (out = fopen("leaders.dat","wb"))
+	FILE* out;
+	if (out = fopen("leaders.dat", "wb"))
 	{
-		fwrite(&gametype,sizeof(int),1,out);
-		fwrite(&max_x,sizeof(int),1,out);
-		fwrite(&max_y,sizeof(int),1,out);
-		fwrite(&app_balls,sizeof(int),1,out);
-		fwrite(&del_balls,sizeof(int),1,out);
-		for (int i=0;i<3;i++)
-			fwrite(&leaders[i],sizeof(info),1,out);
+		fwrite(&gametype, sizeof(int), 1, out);
+		fwrite(&max_x, sizeof(int), 1, out);
+		fwrite(&max_y, sizeof(int), 1, out);
+		fwrite(&app_balls, sizeof(int), 1, out);
+		fwrite(&del_balls, sizeof(int), 1, out);
+		for (int i = 0; i < 3; i++)
+			fwrite(&leaders[i], sizeof(info), 1, out);
 		fclose(out);
 	}
 }
